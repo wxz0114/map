@@ -48,9 +48,12 @@ var Accordion = function(el, multiple) {
     chevrons.on('click', {el: this.el, multiple: this.multiple}, this.dropdown);
     var infos = this.el.find('.fa-info-circle');
     infos.on('click', {el: this.el, multiple: this.multiple}, this.showinfo);
+    var adds = this.el.find('.fa-plus-circle');
+    adds.on('click', {el: this.el, multiple: this.multiple}, this.addinfo);
 }
 
-Accordion.boxOpenedBy = undefined;
+Accordion.boxInfoBtn = undefined;
+Accordion.boxAddBtn = undefined;
 Accordion.changed = false;
 
 Accordion.prototype.dropdown = function(e) {
@@ -78,7 +81,7 @@ function showbox(name, info) {
         });
         $('#info-box-textarea').blur(function() {
             if (Accordion.changed) {
-                infoChanged(Accordion.boxOpenedBy.parent(), this.value);
+                infoChanged(Accordion.boxInfoBtn.parent(), this.value);
                 Accordion.changed = false;
             }
         });
@@ -90,20 +93,20 @@ function showbox(name, info) {
 Accordion.prototype.showinfo = function(e) {
     var $box = $('#info-box');
     $this = $(this);
-    if (Accordion.boxOpenedBy != undefined) {
+    if (Accordion.boxInfoBtn != undefined) {
         if ($this.hasClass('open')) {
-            Accordion.boxOpenedBy.removeClass('open');
-            Accordion.boxOpenedBy = undefined;
+            Accordion.boxInfoBtn.removeClass('open');
+            Accordion.boxInfoBtn = undefined;
             $box.slideToggle();
         } else {
             $this.addClass('open');
-            Accordion.boxOpenedBy.removeClass('open');
-            Accordion.boxOpenedBy = $this;
+            Accordion.boxInfoBtn.removeClass('open');
+            Accordion.boxInfoBtn = $this;
             showbox($this.parent().data("name"), $this.parent().attr("data-info"));
         }
     } else {
         $this.addClass('open');
-        Accordion.boxOpenedBy = $this;
+        Accordion.boxInfoBtn = $this;
         showbox($this.parent().data("name"), $this.parent().attr("data-info"));
         $box.slideToggle();
     }
@@ -178,12 +181,26 @@ function infoChanged(node, value) {
 
 $('#info-box-textarea').blur(function() {
     if (Accordion.changed) {
-        infoChanged(Accordion.boxOpenedBy.parent(), this.value);
+        infoChanged(Accordion.boxInfoBtn.parent(), this.value);
     }
 });
 
 $('#info-box-close').click(function(){
-    Accordion.boxOpenedBy.removeClass('open');
-    Accordion.boxOpenedBy = undefined;
+    Accordion.boxInfoBtn.removeClass('open');
+    Accordion.boxInfoBtn = undefined;
     $(this).parent().parent().slideToggle();
 });
+
+$('#add-box-close').click(function(){
+    $(this).parent().parent().slideToggle();
+    Accordion.boxAddBtn.removeClass("open");
+    // $(this).parent().parent().
+});
+
+Accordion.prototype.addinfo = function(e) {
+    var $box = $('#add-box');
+    $this = $(this);
+    $this.toggleClass('open');
+    $box.slideToggle();
+    Accordion.boxAddBtn = $this;
+}

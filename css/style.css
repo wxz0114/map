@@ -159,7 +159,11 @@ font-size: 12px;
 }
 
 .accordion div i.fa-info-circle.open, .submenu i.fa-info-circle.open {
-    color: #49c9b2;
+    color: #ef7777;
+}
+
+.accordion div i.fa-plus-circle.open, .submenu i.fa-plus-circle.open {
+    color: #ccffff;
 }
 
 /*信息栏*/
@@ -177,20 +181,35 @@ font-size: 12px;
     -moz-box-shadow: 0 1px 5px #333; 
     -webkit-box-shadow: 0 1px 5px #333; 
     z-index:101;
-    display: none;
     opacity:0.9;
+    display: none;
 }
 
 .box div {
     border-bottom: 1px dashed #7F7F7F; 
     margin:-20px -20px 0px -20px; 
     padding:10px; 
-    background-color:#FFEFEF; 
     color:#EF7777; 
     -moz-border-radius:20px 20px 0px 0px; 
     -webkit-border-top-left-radius: 20px; 
     -webkit-border-top-right-radius: 20px; 
 	text-align: center;
+}
+
+#info-box div {
+    background-color:#FFEFEF; 
+}
+
+#add-box div {
+    background-color:#ccffff; 
+}
+
+.box#add-box div {
+    height: 39px;
+}
+
+.box#add-box div textarea {
+    text-align: center;
 }
 
 .box div p {
@@ -199,8 +218,7 @@ font-size: 12px;
 
 .box div i.fa-times-circle {
     position: absolute;
-    right: 12px
-    top:5px;
+    top:12px;
     right: 12px;
     left: auto;
     font-size: 16px;
