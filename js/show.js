@@ -1,6 +1,8 @@
-function createMenuitem(name) {
+var jobj = undefined;
+
+function createMenuitem(obj) {
     // 创建一个菜单的根节点
-    return $("<li></li>").append($("<div class=\"link\"></div>").attr("data-name", name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($("<i class=\"fa fa-code\"></i>")).append($("<p>"+name+"</p>")).append($("<i class=\"fa fa-plus-circle\"></i>")).append($("<i class=\"fa fa-info-circle\"></i>")).append($("<i class=\"fa fa-chevron-circle-down\"></i>")));
+    return $("<li></li>").append($("<div class=\"link\"></div>").attr("data-name", obj.name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($("<i class=\"fa fa-code\"></i>")).append($("<p>"+obj.name+"</p>")).append($("<i class=\"fa fa-plus-circle\"></i>")).append($("<i class=\"fa fa-info-circle\"></i>")).append($("<i class=\"fa fa-chevron-circle-down\"></i>")));
 }
 
 function createListItem(rootnode, obj) {
@@ -11,7 +13,7 @@ function createListItem(rootnode, obj) {
         }
         rootnode.append($("<li></li>").attr("data-name", obj.name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($a).append($("<i class=\"fa fa-plus-circle\"></i>")).append($("<i class=\"fa fa-info-circle\"></i>")));
     } else {
-        var li = createMenuitem(obj.name);
+        var li = createMenuitem(obj);
         rootnode.append(li);
         var submenu = $("<ul class=\"submenu\"></ul>");
         li.append(submenu);
@@ -24,9 +26,9 @@ function createListItem(rootnode, obj) {
 function showAll() {
     $.getJSON("asset/chrome.json", function(data) {
         // alert(data);
-        var objs = data;
-        for (obj in objs) {
-            createListItem($("#accordion"), objs[obj]);
+        jobj = data;
+        for (obj in jobj) {
+            createListItem($("#accordion"), jobj[obj]);
         }
         var accordion = new Accordion($('#accordion'), false);
     });
@@ -180,21 +182,37 @@ function infoChanged(node, value) {
 }
 
 function infoNew(nameStr, infoStr, parentNode) {
-    // alert(parentNode.data("name") + parentNode.data("parent"));
-    var parentStr =  parentNode.data("parent") + '.' + parentNode.data("name");
-    $.ajax({
-        url:'udi',
-        data:{
-            type:"new",
-            name:nameStr,
-            parent:parentStr,
-            info:infoStr
-        },
-        type:'post',
-        cache:false,
-        dataType:'json',
-        success:function(data){}
-    });
+    var parentStr;
+    if (nameStr != "") {
+        if (parentNode.data("parent") != "") {
+            // alert(parentNode.data("name") + "&" + parentNode.data("parent"));
+            parentStr = parentNode.data("parent") + '.' + parentNode.data("name");
+        } else {
+            // alert(parentNode.data("name"));
+            parentStr = parentNode.data("name");
+        }
+        // 需要在当前的parentNode中查找是否有重名的项
+        var tmp = getNode(parentStr, nameStr);
+        if (tmp.name == nameStr) {
+            alert("已经存在同名项，请确认 " + tmp.name);
+            return;
+        }
+        $.ajax({
+            url:'udi',
+            data:{
+                type:"new",
+                name:nameStr,
+                parent:parentStr,
+                info:infoStr
+            },
+            type:'post',
+            cache:false,
+            dataType:'json',
+            success:function(data){}
+        });
+    } else {
+        alert("至少需要写入对象名称");
+    }
 }
 
 $('#info-box-textarea').blur(function() {
@@ -225,4 +243,25 @@ Accordion.prototype.addinfo = function(e) {
     $this.toggleClass('open');
     $box.slideToggle();
     Accordion.boxAddBtn = $this;
+}
+
+function getNode(parentName, name) {
+    // alert(parentName);
+    var p = parentName.split('.');
+    p.push(name);
+    // alert(p);
+    var tmp = jobj;
+    for (var i in p) {
+        for (var j in tmp) {
+            if (tmp[j].name == p[i]) {
+                if (i + 1 < p.length) {
+                    tmp = tmp[j].prop;
+                } else {
+                    tmp = tmp[j];
+                }
+                break;
+            }
+        }
+    }
+    return tmp;
 }

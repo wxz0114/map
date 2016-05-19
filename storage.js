@@ -68,6 +68,8 @@ function save(infoObj) {
         tmp.info = infoObj.info;
         showInfo(jobj, p, infoObj.name, infoObj.type);
     } else if (infoObj.type == "new") {
+        // showProp(tmp);
+        // console.log("+++++++++++++++++++++++++");
         for (var i in p) {
             for (var j in tmp) {
                 if (tmp[j].name == p[i]) {
@@ -90,6 +92,8 @@ function save(infoObj) {
             link : "",
             prop : []
         };
+        // showProp(tmp);
+        // console.log("-------------------------");
         tmp.prop.push(newObj);
         if (tmp.type != "object") {
             tmp.type = "object";
