@@ -95,6 +95,12 @@ h1 a {
     font-size: 16px;
 }
 
+.accordion li i.fa-plus-circle {
+    right: 60px;
+    left: auto;
+    font-size: 16px;
+}
+
 .accordion div.open i.fa-chevron-circle-down {
     color: #b63b4d;
     -webkit-transform: rotate(180deg);
@@ -107,7 +113,7 @@ h1 a {
 .accordion li .submenu li, .box div {
     position: relative;
 }
-.submenu div.link, .submenu div .fa, .submenu i.fa-info-circle {
+.submenu div.link, .submenu div .fa, .submenu i.fa-info-circle, .submenu i.fa-plus-circle {
     color: #d9d9d9;
 }
 

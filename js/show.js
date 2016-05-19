@@ -1,6 +1,6 @@
 function createMenuitem(name) {
     // 创建一个菜单的根节点
-    return $("<li></li>").append($("<div class=\"link\"></div>").attr("data-name", name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($("<i class=\"fa fa-code\"></i>")).append($("<p>"+name+"</p>")).append($("<i class=\"fa fa-info-circle\"></i>")).append($("<i class=\"fa fa-chevron-circle-down\"></i>")));
+    return $("<li></li>").append($("<div class=\"link\"></div>").attr("data-name", name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($("<i class=\"fa fa-code\"></i>")).append($("<p>"+name+"</p>")).append($("<i class=\"fa fa-plus-circle\"></i>")).append($("<i class=\"fa fa-info-circle\"></i>")).append($("<i class=\"fa fa-chevron-circle-down\"></i>")));
 }
 
 function createListItem(rootnode, obj) {
@@ -9,7 +9,7 @@ function createListItem(rootnode, obj) {
         if (obj.info == "") {
             $a.attr("class", "no-info");
         }
-        rootnode.append($("<li></li>").attr("data-name", obj.name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($a).append($("<i class=\"fa fa-info-circle\"></i>")));
+        rootnode.append($("<li></li>").attr("data-name", obj.name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($a).append($("<i class=\"fa fa-plus-circle\"></i>")).append($("<i class=\"fa fa-info-circle\"></i>")));
     } else {
         var li = createMenuitem(obj.name);
         rootnode.append(li);
