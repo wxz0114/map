@@ -179,6 +179,24 @@ function infoChanged(node, value) {
     });
 }
 
+function infoNew(nameStr, infoStr, parentNode) {
+    // alert(parentNode.data("name") + parentNode.data("parent"));
+    var parentStr =  parentNode.data("parent") + '.' + parentNode.data("name");
+    $.ajax({
+        url:'udi',
+        data:{
+            type:"new",
+            name:nameStr,
+            parent:parentStr,
+            info:infoStr
+        },
+        type:'post',
+        cache:false,
+        dataType:'json',
+        success:function(data){}
+    });
+}
+
 $('#info-box-textarea').blur(function() {
     if (Accordion.changed) {
         infoChanged(Accordion.boxInfoBtn.parent(), this.value);
@@ -192,9 +210,13 @@ $('#info-box-close').click(function(){
 });
 
 $('#add-box-close').click(function(){
-    $(this).parent().parent().slideToggle();
+    $p = $(this).parent().parent();
+    infoNew(
+        ($p.find("#add-title-textarea")[0]).value, 
+        ($p.find("#add-info-textarea")[0]).value, 
+        Accordion.boxAddBtn.parent());
+    $p.slideToggle();
     Accordion.boxAddBtn.removeClass("open");
-    // $(this).parent().parent().
 });
 
 Accordion.prototype.addinfo = function(e) {
