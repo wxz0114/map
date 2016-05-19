@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: #2d2c41;
+    font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: #b63b4d;
+    text-decoration: none;
+}
+
+/** =======================
+ * Contenedor Principal
+ ===========================*/
+h1 {
+     color: #FFF;
+     font-size: 24px;
+     font-weight: 400;
+     text-align: center;
+     margin-top: 80px;
+ }
+
+h1 a {
+     color: #c12c42;
+     font-size: 16px;
+ }
+
+/*折叠栏*/
+ .accordion {
+     width: 100%;
+     max-width: 660px;
+     margin: 30px auto 20px;
+     background: #FFF;
+     -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+     border-radius: 4px;
+ }
+
+.accordion .link {
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px 15px 42px;
+    color: #4D4D4D;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px solid #CCC;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.accordion li:last-child .link {
+    border-bottom: 0;
+}
+
+.accordion li i {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    font-size: 18px;
+    color: #595959;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.accordion li i.fa-chevron-circle-down {
+    right: 12px;
+    left: auto;
+    font-size: 16px;
+}
+
+.box div i.fa-chevron-circle-down {
+    top:12px;
+    right: 12px;
+    left: auto;
+    font-size: 16px;
+}
+
+.accordion li i.fa-info-circle {
+    right: 36px;
+    left: auto;
+    font-size: 16px;
+}
+
+.accordion div.open i.fa-chevron-circle-down {
+    color: #b63b4d;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/*一级子菜单*/
+.accordion li .submenu li, .box div {
+    position: relative;
+}
+.submenu div.link, .submenu div .fa, .submenu i.fa-info-circle {
+    color: #d9d9d9;
+}
+
+.submenu div.open {
+    color: #b63b4d;
+}
+/**
+ * Submenu
+ -----------------------------*/
+.submenu {
+    display: none;
+    background: #444359;
+    font-size: 14px;
+}
+
+.submenu li {
+    border-bottom: 1px solid #4b4a5e;
+}
+
+.submenu a {
+    display: block;
+    text-decoration: none;
+    color: #d9d9d9;
+    padding: 12px;
+    padding-left: 42px;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+.submenu a.no-info {
+    color: #ffffcc;
+}
+
+.submenu a:hover {
+    background: #b63b4d;
+    color: #FFF;
+}
+
+.submenu .submenu a {
+padding-left: 60px;
+font-size: 12px;
+}
+
+.accordion div i.fa-info-circle.open, .submenu i.fa-info-circle.open {
+    color: #49c9b2;
+}
+
+/*信息栏*/
+.box {
+    position:fixed;
+    left:15%;
+    right:35%;
+    top:20%;
+    background-color:#fff;
+    color:#7F7F7F;
+    padding:20px;
+    border:2px solid #ccc;
+    -moz-border-radius: 20px; 
+    -webkit-border-radius:20px; 
+    -moz-box-shadow: 0 1px 5px #333; 
+    -webkit-box-shadow: 0 1px 5px #333; 
+    z-index:101;
+    display: none;
+    opacity:0.9;
+}
+
+.box div {
+    border-bottom: 1px dashed #7F7F7F; 
+    margin:-20px -20px 0px -20px; 
+    padding:10px; 
+    background-color:#FFEFEF; 
+    color:#EF7777; 
+    -moz-border-radius:20px 20px 0px 0px; 
+    -webkit-border-top-left-radius: 20px; 
+    -webkit-border-top-right-radius: 20px; 
+	text-align: center;
+}
+
+.box div p {
+	display: inline;
+}
+
+.box div i.fa-times-circle {
+    position: absolute;
+    right: 12px
+    top:5px;
+    right: 12px;
+    left: auto;
+    font-size: 16px;
+    color:#595959; 
+}
+
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    background-color: transparent;
+    color: #666464;
+    height: auto;
+    resize:none;
+    width:100%;
+}
