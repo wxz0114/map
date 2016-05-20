@@ -252,6 +252,7 @@ Accordion.prototype.addinfo = function(e) {
     $this.toggleClass('open');
     $box.slideToggle();
     Accordion.boxAddBtn = $this;
+    $box.children('div').children('textarea').val('');
 }
 
 function getNode(parentName, name) {
