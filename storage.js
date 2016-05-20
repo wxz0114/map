@@ -8,8 +8,8 @@ var filepath = './asset/chrome.json';
 // writeFile(file);
 readFile(filepath);
 
-function writeFile(path) {
-    fs.writeFileSync(path, JSON.stringify(jobj));
+function writeFile(path, data) {
+    fs.writeFileSync(path, data);
 }
 
 function readFile(path) {
@@ -101,7 +101,9 @@ function save(infoObj) {
         console.log(">>> in storage.js tmp.name=" + tmp.name + " tmp.type=" + tmp.type);
         showProp(tmp);
     }
-    writeFile(filepath);
+    var data = JSON.stringify(jobj);
+    writeFile(filepath, data);
+    return data;
 }
 
 exports.save = save;

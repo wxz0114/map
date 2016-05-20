@@ -29,7 +29,8 @@ http.createServer(function(req, response) {
             // console.log('>>> data = ' + body);
             var infoObj = querystring.parse(body);
             // console.log('>>> data = ' + infoObj.info);
-            storage.save(infoObj);
+            response.writeHead(200, {'Content-Type' : "application/json"});
+            response.end(storage.save(infoObj));
         });
     } else {
         ext = ext ? ext.slice(1) : 'unknown';

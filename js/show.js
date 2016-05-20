@@ -177,7 +177,9 @@ function infoChanged(node, value) {
         type:'post',
         cache:false,
         dataType:'json',
-        success:function(data){}
+        success:function(data) {
+            alert(data);
+        }
     });
 }
 
@@ -208,7 +210,9 @@ function infoNew(nameStr, infoStr, parentNode) {
             type:'post',
             cache:false,
             dataType:'json',
-            success:function(data){}
+            success:function(data) {
+                alert(data);
+            }
         });
     } else {
         alert("至少需要写入对象名称");
