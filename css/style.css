@@ -61,6 +61,10 @@ h1 a {
     transition: all 0.4s ease;
 }
 
+.submenu div.link {
+    border-bottom: 1px solid #4b4a5e;
+}
+
 .accordion li:last-child .link {
     border-bottom: 0;
 }
@@ -227,11 +231,12 @@ font-size: 12px;
 
 textarea {
     border: none;
-    overflow: auto;
+    /*overflow: auto;*/
     outline: none;
     background-color: transparent;
     color: #666464;
     height: auto;
     resize:none;
     width:100%;
+    overflow-y:visible;
 }

@@ -2,7 +2,7 @@ var jobj = undefined;
 
 function createMenuitem(obj) {
     // 创建一个菜单的根节点
-    return $("<li></li>").append($("<div class=\"link\"></div>").attr("data-name", obj.name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($("<i class=\"fa fa-code\"></i>")).append($("<p>"+obj.name+"</p>")).append($("<i class=\"fa fa-plus-circle\"></i>")).append($("<i class=\"fa fa-info-circle\"></i>")).append($("<i class=\"fa fa-chevron-circle-down\"></i>")));
+    return $("<li></li>").append($("<div class=\"link\"></div>").attr("data-name", obj.name).attr("data-info", obj.info).attr("data-parent", obj.parent).append($("<p>"+obj.name+"</p>")).append($("<i class=\"fa fa-plus-circle\"></i>")).append($("<i class=\"fa fa-info-circle\"></i>")).append($("<i class=\"fa fa-chevron-circle-down\"></i>")));
 }
 
 function createListItem(rootnode, obj) {
@@ -117,46 +117,6 @@ Accordion.prototype.showinfo = function(e) {
 $('#info-box-textarea').bind('input propertychange', function() {
     Accordion.changed = true;
 });
-
-// fakeInfoChanged();
-
-function fakeInfoChanged() {
-    $.ajax({
-        url:'udi',
-        data:{
-            type:"changed",
-            name:"appCodeName",
-            parent:"navigator",
-            // name:"geolocation",
-            // parent:"navigator",
-            info:"返回浏览器的名称，通常是Mozilla，即使在非Mozilla浏览器中也是如此"
-        },
-        type:'post',
-        cache:false,
-        dataType:'json',
-        contentType:'text/html; charset=utf-8',
-        success:function(data){}
-    });
-}
-
-// fakeInfoNew();
-
-function fakeInfoNew() {
-    $.ajax({
-        url:'udi',
-        data:{
-            type:"new",
-            name:"mimeTypes",
-            parent:"navigator.plugins",
-            info:"回传MimeTypeArray对象，其内包含浏览器支持的媒体格式对象"
-        },
-        type:'post',
-        cache:false,
-        dataType:'json',
-        contentType:'text/html; charset=utf-8',
-        success:function(data){}
-    });
-}
 
 function infoChanged(node, value) {
     node.attr("data-info", value);
@@ -274,4 +234,44 @@ function getNode(parentName, name) {
         }
     }
     return tmp;
+}
+
+// fakeInfoChanged();
+
+function fakeInfoChanged() {
+    $.ajax({
+        url:'udi',
+        data:{
+            type:"changed",
+            name:"appCodeName",
+            parent:"navigator",
+            // name:"geolocation",
+            // parent:"navigator",
+            info:"返回浏览器的名称，通常是Mozilla，即使在非Mozilla浏览器中也是如此"
+        },
+        type:'post',
+        cache:false,
+        dataType:'json',
+        contentType:'text/html; charset=utf-8',
+        success:function(data){}
+    });
+}
+
+// fakeInfoNew();
+
+function fakeInfoNew() {
+    $.ajax({
+        url:'udi',
+        data:{
+            type:"new",
+            name:"mimeTypes",
+            parent:"navigator.plugins",
+            info:"回传MimeTypeArray对象，其内包含浏览器支持的媒体格式对象"
+        },
+        type:'post',
+        cache:false,
+        dataType:'json',
+        contentType:'text/html; charset=utf-8',
+        success:function(data){}
+    });
 }
