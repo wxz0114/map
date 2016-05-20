@@ -211,7 +211,12 @@ function infoNew(nameStr, infoStr, parentNode) {
             cache:false,
             dataType:'json',
             success:function(data) {
-                alert(data);
+                $("#accordion").children('li').remove();
+                jobj = data;
+                for (obj in jobj) {
+                    createListItem($("#accordion"), jobj[obj]);
+                }
+                var accordion = new Accordion($('#accordion'), false);
             }
         });
     } else {
