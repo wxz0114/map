@@ -178,7 +178,7 @@ function infoChanged(node, value) {
         cache:false,
         dataType:'json',
         success:function(data) {
-            alert(data);
+            // alert(data);
         }
     });
 }
