@@ -178,7 +178,7 @@ font-size: 12px;
     top:20%;
     background-color:#fff;
     color:#7F7F7F;
-    padding:20px;
+    padding:10px;
     border:2px solid #ccc;
     -moz-border-radius: 20px; 
     -webkit-border-radius:20px; 
@@ -191,7 +191,7 @@ font-size: 12px;
 
 .box div {
     border-bottom: 1px dashed #7F7F7F; 
-    margin:-20px -20px 0px -20px; 
+    margin:-10px -10px 0px -10px; 
     padding:10px; 
     color:#EF7777; 
     -moz-border-radius:20px 20px 0px 0px; 

@@ -1,4 +1,5 @@
 var jobj = undefined;
+var orgHeight = 0;
 
 function createMenuitem(obj) {
     // 创建一个菜单的根节点
@@ -105,12 +106,14 @@ Accordion.prototype.showinfo = function(e) {
             Accordion.boxInfoBtn.removeClass('open');
             Accordion.boxInfoBtn = $this;
             showbox($this.parent().data("name"), $this.parent().attr("data-info"));
+            resizeTextareaHeight();
         }
     } else {
         $this.addClass('open');
         Accordion.boxInfoBtn = $this;
         showbox($this.parent().data("name"), $this.parent().attr("data-info"));
         $box.slideToggle();
+        resizeTextareaHeight();
     }
 }
 
@@ -234,6 +237,14 @@ function getNode(parentName, name) {
         }
     }
     return tmp;
+}
+
+function resizeTextareaHeight() {
+    textarea = $("#info-box").find('textarea')[0];
+    if (orgHeight == 0)
+        orgHeight = $(textarea).height() + "px";
+    textarea.style.height =  orgHeight;
+    textarea.style.height = Math.max(textarea.scrollHeight, $(textarea).height()) + "px";
 }
 
 // fakeInfoChanged();
